@@ -10,4 +10,12 @@ use Illuminate\Notifications\Notifiable;
 class Playerbidding extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $fillable = [
+        'Player_Name',
+        'Player_No',
+        'Team_Name',
+        'Team_No',
+        'bid_price'
+    ];
+
 }
