@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('playerdatas', function (Blueprint $table) {
             $table->id();
-            $table->string('Player_Name')->nullable();
-            $table->string('Player_No')->unique();
-            $table->string('Player_Age')->nullable();
-            $table->string('Player_MinBid_Price')->nullable();
-            $table->string('Player_CBidPrice_Price')->nullable();
-            $table->boolean('Player_Status')->comment("1:Active,0:Inactive,2:Bidded")->default(0);
+            $table->string('player_name')->nullable();
+            $table->string('player_no');
+            $table->string('player_age')->nullable();
+            $table->string('player_min_bid_price')->nullable();
+            $table->string('player_current_bid_price')->nullable();
+            $table->string('team_allot')->nullable();
+            $table->boolean('player_status')->comment("1:Active,0:Inactive,2:Bidded")->default(0);
+            $table->string('game_id');
+            $table->foreign('game_id')->references('game_id')->on('gamesizings');
             $table->rememberToken();
             $table->timestamps();
         });

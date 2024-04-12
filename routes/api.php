@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Biddingcontroller;
+use App\Http\Controllers\Api\BiddingStartController;
 use Illuminate\Support\Facades\Validator; 
 /*
 |--------------------------------------------------------------------------
@@ -22,25 +23,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 
+//admin routes
+Route::post('Admin/login',[Biddingcontroller::class,'AdminLogin']);
 
-//Routes for admin access.
+
+Route::middleware(['auth:api','scope:Admin'])->group(function(){
+    Route::post('Admin/SetGame',[Biddingcontroller::class,'SetGame']);
+    Route::post('Admin/AddTeam',[Biddingcontroller::class,'AddTeam']);
+    Route::post('Admin/AddPlayer',[Biddingcontroller::class,'AddPlayer']);
+    Route::post('Admin/AllotTeam',[Biddingcontroller::class,'SelectTeam']);
+    Route::post('Admin/Start/Bid',[Biddingcontroller::class,'startBid']);
+   });
 
 
-//first cmd by admin
-Route::post('Admin/{id}/{name}/{task}',[Biddingcontroller::class,'Adminlogin'])->middleware('guard');
-//to add player
-Route::post('Admin/addplayer',[Biddingcontroller::class,'AddPlayer']);
-//to add team
-Route::post('Admin/addteam',[Biddingcontroller::class,'AddTeam'])->name('add.team');
-
-//to display no-access
-Route::get('/no-access',function(){
-    echo "you cannot access this page";
-});
+ 
+//Team Routes
 
 
 //login team
-Route::get('login/team/{id}',[Biddingcontroller::class,'playerview']);
+ Route::post('Team/login',[Biddingcontroller::class,'TeamLogin']);
 
-//player bidding
-Route::post('login/team/{id}',[BIddingcontroller::class,'setplayerbid']);
+    Route::middleware(['auth:api','scopes:Admin'])->group(function(){
+    Route::post('Active/Player/View',[Biddingcontroller::class,'ActivePlayerView']);
+    Route::post('Player/Bid',[Biddingcontroller::class,'SetPlayerBid']);
+});
+
+
+
+
+

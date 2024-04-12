@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('playerbidding', function (Blueprint $table) {
+        Schema::create('playerbiddings', function (Blueprint $table) {
             $table->id();
-            $table->string('Player_Name')->nullable();
-            $table->string('Player_No')->unique();
-            $table->string('Team_Name')->nullable();
-            $table->string('Team_No')->nullable();
+            $table->string('team_no')->nullable();
+            $table->string('player_name')->nullable();
+            $table->string('player_no');
+            $table->string('team_name')->nullable();
             $table->string('bid_price')->nullable();
+            $table->string('game_id');
+            $table->foreign('game_id')->references('game_id')->on('gamesizings');
             $table->timestamps();
         });
     }

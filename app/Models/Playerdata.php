@@ -11,11 +11,13 @@ class Playerdata extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
-        'Player_Name',
-        'Player_No',
-        'Player_Age',
-        'Player_MinBid_Price',
-        'Player_CBidPrice_Price',
-        'Player_Status'
+        'player_name',
+        'player_no',
+        'player_age',
+        'player_min_bid_price',
+        'player_current_bid_price',
+        'team_allot',
+        'game_id',
+        'player_status'
     ];
 }

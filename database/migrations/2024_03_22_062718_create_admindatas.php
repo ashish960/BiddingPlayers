@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('admindatas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -28,6 +29,7 @@ return new class extends Migration
         Schema::dropIfExists('admindatas');
         $table->id();
         $table->string('name');
+        $table->string('email');
         $table->string('password');
         $table->rememberToken();
         $table->timestamps();

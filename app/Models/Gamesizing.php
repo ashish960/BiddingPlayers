@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens; 
 use Illuminate\Notifications\Notifiable;
 
-class Playerbidding extends Model
+class Gamesizing extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    protected $fillable = [
+    use HasApiTokens,HasFactory, Notifiable;
+    protected $fillable=[
         'game_id',
-        'player_name',
-        'player_no',
-        'team_name',
-        'team_no',
-        'bid_price'
-    ];
+        'game_name',
+        'team_size',
+        'player_size',
+        'team_max_bid_amount'
 
+    ];
 }
