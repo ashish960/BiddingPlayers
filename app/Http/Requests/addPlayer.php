@@ -26,7 +26,7 @@ class addPlayer extends FormRequest
             'player_no'=>'required|integer|gt:0',
             'player_age'=>'required|integer|gt:0',
             'player_min_bid_price'=>'required|numeric|gt:0',
-            'game_id'=>'bail|required|numeric|gt:0|exists:gamesizings,game_id'      //here bail exits the validation check if any of validation fails.
+            'game_id'=>'required|numeric|gt:0|exists:gamesizings,game_id'      //here bail exits the validation check if any of validation fails.
         ];
     }
     public function messages(){
